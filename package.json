@@ -6,7 +6,10 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Inigoperez/Proyecto2021_electron.git"
+  },
   "keywords": [
     "Electron",
     "quick",
@@ -18,5 +21,10 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^11.1.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   }
 }
