@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
@@ -10,23 +10,20 @@
     <link rel="stylesheet" href="../css/index_css.css">
   </head>
   <body>
-    <div id="login">
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </container>
+    <section class="container d-flex justify-content-center h-100 align-items-center">
+        <form class="d-flex flex-column bg-secondary">
+          <h1 class="text-center">Proyecto Rutas</h1>
+          <div class="form-group">
+            <label class="text-white" for="exampleInputEmail1">Correo electronico: </label>
+            <input type="email" class="form-control bg-light" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label class="text-white" for="exampleInputPassword1">Contraseña: </label>
+            <input type="password" class="form-control bg-light" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        </form>
+    </section>
     <!-- You can also require other files to run in this process -->
     <script src="Js/renderer.js"></script>
   </body>
