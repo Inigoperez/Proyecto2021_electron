@@ -13,8 +13,8 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-
+  //mainWindow.loadFile('index.html')
+  mainWindow.loadFile('Pages/Creacion_de_rutas.html')
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
