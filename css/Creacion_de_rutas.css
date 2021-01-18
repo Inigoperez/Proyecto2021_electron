@@ -3,7 +3,6 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    width: 100%;
 }
 
 #avatar{
@@ -15,8 +14,17 @@ body{
     font-family: "Hemi_head_bd_it";
 }
 
+.sinmargenes{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.sinpadding [class*="col-"] {
+    padding: 0;
+}
+
 section form{
-    padding: 15px;
+    padding: 5%;
     font-family: "Hemi_head_bd_it";
 }
 

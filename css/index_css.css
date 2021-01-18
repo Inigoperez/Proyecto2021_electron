@@ -1,8 +1,13 @@
+*{
+    margin: auto;
+    height: 100%;
+    width: 100%;
+}
+
 body{
     background-image: url("./images/fondo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
 }
 
 form{
@@ -10,11 +15,6 @@ form{
     padding: 15px;
     border-radius: 8%;
     font-family: "Hemi_head_bd_it";
-}
-
-footer{
-    height: 5%;
-    background-color: black;
 }
 
 @font-face {
