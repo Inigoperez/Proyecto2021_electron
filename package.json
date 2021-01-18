@@ -25,6 +25,8 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "jquery": "^3.5.1",
+    "leaflet": "^1.7.1",
+    "leaflet-extra-markers": "^1.2.1",
     "popper.js": "^1.16.1"
   }
 }

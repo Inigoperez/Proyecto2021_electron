@@ -5,6 +5,8 @@
     <title>Creación de rutas</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/Creacion_de_rutas.css">
+    <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../node_modules/leaflet-extra-markers/src/assets/css/leaflet.extra-markers.css"/>
   </head>
   <body>
     <header id="header" class="header text-center" >
@@ -16,10 +18,10 @@
           
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <a class="nav-link" href="#">Lista de rutas<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                   <a class="nav-link" href="#">Crear rutas</a>
                 </li>
                 <li class="nav-item">
@@ -36,38 +38,42 @@
     </header>
     <section>
       <div class="container sinpadding">
+        <!-- Titulo de la pestaña (Creación de rutas)-->
         <div class="row">
             <div class="col-12 text-center">
                 <h1 id="tituloVentana">Crear nueva ruta</h1>
             </div>
         </div>
+        <!-- Contenido Formulario/Mapa -->
         <div class="row">
-            <div class="col-3 bg-warning">
-                <form>
-                    <div class="form-group">
-                      <label for="InputNombreRuta">Nombre de la ruta: </label>
-                      <input type="text" class="form-control" id="InputNombreRuta" placeholder="Nombre de la ruta">
-                    </div>
-                    <div class="form-group">
-                      <label for="InputDuracion">Duración: </label>
-                      <input type="text" class="form-control" id="InputDuracion" placeholder="Duración (en minutos)">
-                    </div>
-                    <div class="form-group">
-                      <label for="InputCiudad">Ciudad: </label>
-                      <input type="text" class="form-control" id="InputCiudad" placeholder="ciudad">
-                    </div>
-                    <div class="form-group">
-                      <label for="formGroupExampleInput2">Another label</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-                    </div>
-                    <div class="form-group align-items-center text-center">
-                      <input class="btn btn-light" type="button" value="Guardar">
-                    </div>
-                </form>
-            </div>
-            <div class="col-9 btn-danger">
-                <h1>Columna 2</h1>
-            </div>
+          <!-- Formulario de datos RUTA -->
+          <div class="col-3 bg-warning">
+              <form>
+                  <div class="form-group">
+                    <label for="InputNombreRuta">Nombre de la ruta: </label>
+                    <input type="text" class="form-control" id="InputNombreRuta" placeholder="Nombre de la ruta">
+                  </div>
+                  <div class="form-group">
+                    <label for="InputDuracion">Duración: </label>
+                    <input type="text" class="form-control" id="InputDuracion" placeholder="Duración (en minutos)">
+                  </div>
+                  <div class="form-group">
+                    <label for="InputCiudad">Ciudad/Pueblo: </label>
+                    <input type="text" class="form-control" id="InputCiudad" placeholder="ciudad">
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Another label</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                  </div>
+                  <div class="form-group align-items-center text-center">
+                    <input class="btn btn-light" type="button" value="Guardar">
+                  </div>
+              </form>
+          </div>
+          <!-- Mapa donde seleccionar puntos de ruta -->
+          <div class="col-9 btn-warning p-1">
+            <div id="map" style="height: 100%"></div> 
+          </div>
         </div>
         <div class="row">
           <div class="col-12">
@@ -105,6 +111,9 @@
       </div>
     </section>
     <!-- You can also require other files to run in this process -->
-    <script src="Js/renderer.js"></script>
+    <script src="../Js/renderer.js"></script>
+    <script src="../node_modules/leaflet/dist/leaflet.js"></script>
+    <script src="../node_modules/leaflet-extra-markers/src/assets/js/leaflet.extra-markers.js"></script>
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   </body>
 </html>

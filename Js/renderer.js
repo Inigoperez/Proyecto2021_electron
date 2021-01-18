@@ -1,6 +1,7 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// No Node.js APIs are available in this process because
-// `nodeIntegration` is turned off. Use `preload.js` to
-// selectively enable features needed in the rendering
-// process.
+window.L = require('leaflet')
+
+let map = L.map('map').setView([43.338318, -1.788809], 15)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
