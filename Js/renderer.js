@@ -1,5 +1,5 @@
 const { icon, Icon } = require('leaflet');
-
+const { remote } = require('electron');
 window.L = require('leaflet');
 
 //////////////////////////////
@@ -62,3 +62,4 @@ function crearTablaPuntos(Punto, Cantidad){
     bodyTablaPuntos.className = 'table-info text-center';
                         
 }
+
