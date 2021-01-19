@@ -13,23 +13,19 @@ let Punto = {
 ////////////////////////////
 ////////// Mapa ///////////
 
-let map = L.map('map').setView([43.338318, -1.788809], 15)
+var map = L.map('map').setView([43.338318, -1.788809], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    function addMarker(Lat, Lng, Nombre){
-        let marker = L.marker([Lat, Lng]).bindPopup(Nombre).openPopup();
-        marker.addTo(map);
-    }
 
 /// Crear puntos y añadirlos a un array
     map.on('click', function(e) {
         var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng);
         if (opcion == true) {
             Punto ={
-                "nombre":"",
+                "Nombre":"",
                 "Cordenadas":[e.latlng.lat , e.latlng.lng],
                 "Calle":""
             }
@@ -40,7 +36,9 @@ let map = L.map('map').setView([43.338318, -1.788809], 15)
         }
     });
 
-
+    function addMarker(Lat, Lng, Nombre){
+        L.marker([Lat,Lng]).addTo(map);
+    }
 
 //////////////////////////////////////////
 ///////// Vista creación puntos /////////
@@ -59,25 +57,3 @@ function crearTablaPuntos(Punto, Cantidad){
     bodyTablaPuntos.className = 'table-info';
                         
 }
-
-
-
-
-/*
-<tr class="table-info">
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-</tr>
-<tr class="table-info">
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-</tr>
-<tr class="table-info">
-    <th scope="row">3</th>
-    <td colspan="2">Larry the Bird</td>
-    <td>@twitter</td>
-</tr>*/
