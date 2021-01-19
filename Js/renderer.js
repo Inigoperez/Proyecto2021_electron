@@ -1,3 +1,5 @@
+const { icon, Icon } = require('leaflet');
+
 window.L = require('leaflet');
 
 //////////////////////////////
@@ -22,7 +24,7 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
 
 /// Crear puntos y añadirlos a un array
     map.on('click', function(e) {
-        var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng);
+        var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
             Punto ={
                 "Nombre":"",
@@ -37,7 +39,8 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
     });
 
     function addMarker(Lat, Lng, Nombre){
-        L.marker([Lat,Lng]).addTo(map);
+        L.marker([Lat,Lng]).addTo(map)
+        .bindPopup(Nombre);        
     }
 
 //////////////////////////////////////////
@@ -51,9 +54,11 @@ function crearTablaPuntos(Punto, Cantidad){
                         "<td>"+Punto.nombre+"</td>"+
                         "<td>"+Punto.Cordenadas[0]+"</td>"+
                         "<td>"+Punto.Cordenadas[1]+"</td>"+
+                        "<td><input class='btn btn-warning' type='button' value='Modificar'></td>"+
+                        "<td><input class='btn btn-danger' type='button' value='Eliminar'></td>"+
                     "</tr>";
     
     bodyTablaPuntos.insertRow().innerHTML = contenidoFila; 
-    bodyTablaPuntos.className = 'table-info';
+    bodyTablaPuntos.className = 'table-info text-center';
                         
 }
