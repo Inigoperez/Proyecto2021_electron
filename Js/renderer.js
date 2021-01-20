@@ -78,8 +78,7 @@ function deleteRow(r) {
 function crearTablaPuntos(Punto, Cantidad){
     
     let bodyTablaPuntos = document.getElementById("tablaPuntos").getElementsByTagName('tbody')[0];
-    contenidoFila = "<tr'>"+
-                        "<th scope='row'>"+Cantidad.toString()+"</th>"+
+    contenidoFila = "<tr>"+
                         "<td>"+Punto.nombre+"</td>"+
                         "<td>"+Punto.Cordenadas[0]+"</td>"+
                         "<td>"+Punto.Cordenadas[1]+"</td>"+
