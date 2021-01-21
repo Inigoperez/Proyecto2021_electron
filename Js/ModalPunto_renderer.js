@@ -9,9 +9,15 @@ let Punto = {
     "Calle": ''
 };
 
-ipcRenderer.on('Datospuntos', (e,arg) =>{
-    console.log(arg);
-});
+function cargar(){
+    console.log("error1");
+    ipcRenderer.on('Datospuntos', (e,data) =>{
+        console.log("error");
+        console.log(data);
+    });
+    console.log("error2");
+}
+
 
     
 

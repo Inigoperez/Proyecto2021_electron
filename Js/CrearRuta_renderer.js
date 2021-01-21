@@ -28,9 +28,9 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
     map.on('click', function(e) {
         cordenadas.push(e.latlng.lat);
         cordenadas.push(e.latlng.lng);
-        ipcRenderer.send('Datospuntos', {cordenadas});
+        
         crearModal();
-        var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
+        /*var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
             Punto ={
                 "Nombre":"",
@@ -40,7 +40,7 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
             ListaPuntos.push(Punto);
             crearTablaPuntos(Punto,ListaPuntos.length);
             addMarker(Punto.Cordenadas[0],Punto.Cordenadas[1],Punto.Nombre);
-        }
+        }*/
     });
 
     
