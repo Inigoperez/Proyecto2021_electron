@@ -1,0 +1,34 @@
+body{
+    background-image: url("./images/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+#avatar{
+    height: 10%;
+    width: 10%;
+}
+
+#tituloVentana{
+    font-family: "Hemi_head_bd_it";
+}
+
+.sinmargenes{
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.sinpadding [class*="col-"] {
+    padding: 0;
+}
+
+section form{
+    padding: 5%;
+    font-family: "Hemi_head_bd_it";
+}
+
+@font-face {
+    font-family: "Hemi_head_bd_it";
+    src: url("./fonts/tipo_admin.ttf");
+}
