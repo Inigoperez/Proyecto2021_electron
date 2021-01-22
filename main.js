@@ -66,15 +66,34 @@ app.whenReady().then(() => {
   CreateRoutesWindow()
   
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) CreateRoutesWindow()
+    var Option;
+    ipcMain.on('Vista', (e,datos) =>{
+      Option = datos;
+    })
+
+    switch(Option){
+      case 'CrearRuta':
+        CreateRoutesWindow()
+      break;
+      case 'ListaRuta':
+        ListRouteWindow()
+      break;
+      default:
+        if (BrowserWindow.getAllWindows().length === 0) CreateRoutesWindow();
+    }
+    
   })
 
 })
 
 //// Abrimos el modal ////
 ipcMain.on('iniciar-modal', (e,datos) =>{
-    var cordenadas = datos;
     ModalPunto()
+})
+
+ipcMain.on('cerrar-modal', (e,datos)=>{
+  console.log("cerrarmodal");
+  
 })
 
 ///// Cerramos la aplicación ///////

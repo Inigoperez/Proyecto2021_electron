@@ -1,6 +1,5 @@
 window.L = require('leaflet');
-const { remote, ipcRenderer } = require('electron');
-const BrowserWindow = remote.BrowserWindow;
+const {ipcRenderer, ipcMain } = require('electron');
 
 
 //////////////////////////////
@@ -28,8 +27,11 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
     map.on('click', function(e) {
         cordenadas.push(e.latlng.lat);
         cordenadas.push(e.latlng.lng);
-        var start  = true;
         ipcRenderer.send('iniciar-modal',cordenadas);
+        ipcMain.on('datos-ruta', (e,datos) =>{
+            console.log(datos);
+        })
+        
         /*var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
             Punto ={
@@ -84,4 +86,11 @@ function crearTablaPuntos(Punto, Cantidad){
     bodyTablaPuntos.insertRow().innerHTML = contenidoFila; 
     bodyTablaPuntos.className = 'table-info text-center';
                         
+}
+
+//////////////////////////////////////////
+////////////////// Menú //////////////////
+
+function ViewListaRutas(view){
+    ipcRenderer.send('Vista',view);
 }
