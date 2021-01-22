@@ -1,4 +1,4 @@
-const { remote, ipcRenderer } = require('electron');
+const { remote, ipcMain, ipcRenderer } = require('electron');
 
 //////////////////////////////
 /////// Varibales ///////////
@@ -9,14 +9,10 @@ let Punto = {
     "Calle": ''
 };
 
-function cargar(){
-    console.log("error1");
-    ipcRenderer.on('Datospuntos', (e,data) =>{
-        console.log("error");
-        console.log(data);
-    });
-    console.log("error2");
-}
+ipcMain.on('envio-cordenadas', (e,data) => {
+    console.log(data)
+});
+
 
 
     

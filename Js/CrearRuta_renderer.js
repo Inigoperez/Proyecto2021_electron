@@ -28,8 +28,8 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
     map.on('click', function(e) {
         cordenadas.push(e.latlng.lat);
         cordenadas.push(e.latlng.lng);
-        
-        crearModal();
+        var start  = true;
+        ipcRenderer.send('iniciar-modal',cordenadas);
         /*var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
             Punto ={
@@ -85,19 +85,3 @@ function crearTablaPuntos(Punto, Cantidad){
     bodyTablaPuntos.className = 'table-info text-center';
                         
 }
-
-var ModalCrearRuta
-function crearModal(){
-    ModalCrearRuta = new BrowserWindow({
-      title: 'Datos de ruta',
-      modal: true,
-      width: 800,
-      height: 600,
-      alwaysOnTop:true,
-      parent: remote.getCurrentWindow(),
-      webPreferences:{
-        nodeIntegration: true,
-      }
-    });
-    ModalCrearRuta.loadFile('Pages/ModalPunto.html');
-  }
