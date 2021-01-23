@@ -1,6 +1,8 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain,remote, webContents} = require('electron')
+const {app, BrowserWindow, ipcMain, webContents, ipcRenderer} = require('electron')
 const path = require('path')
+
+let IDpunto;
 
 var LoginWindow;
 function LoginWindow () {
@@ -36,6 +38,7 @@ function ListRouteWindow () {
     width: 800,
     height: 600,
     maximizable:true,
+    contextIsolation: false,
     webPreferences: {
       enableRemoteModule: true,
       nodeIntegration: true
@@ -80,8 +83,7 @@ app.whenReady().then(() => {
       break;
       default:
         if (BrowserWindow.getAllWindows().length === 0) CreateRoutesWindow();
-    }
-    
+    } 
   })
 
 })
@@ -91,9 +93,18 @@ ipcMain.on('iniciar-modal', (e,datos) =>{
     ModalPunto()
 })
 
+ipcMain.on('envio-cordenadas',(a,idPunto)=>{
+  console.log(idPunto);
+  IDpunto = idPunto;
+})
+
 ipcMain.on('cerrar-modal', (e,datos)=>{
-  console.log("cerrarmodal");
-  
+  console.log(datos);
+  /*
+    -Llamada a la api para insertar los datos del punto
+    -Usar IDpunto para hacer el set datos
+  */
+ ModalCrearRuta.close();
 })
 
 ///// Cerramos la aplicación ///////

@@ -1,4 +1,4 @@
-const {ipcRenderer } = require('electron');
+const {ipcRenderer, remote } = require('electron');
 
 //////////////////////////////
 /////// Varibales ///////////
@@ -22,11 +22,10 @@ function guardarPunto(){
     let Respuesta1 = document.getElementById("InputRespuesta1").value;
     let Respuesta2 = document.getElementById("InputRespuesta2").value;
     let Respuesta3 = document.getElementById("InputRespuesta3").value;
+
+    let datos = [Nombre,Descripcion,Pregunta,Respuesta1,Respuesta2,Respuesta3]
     
-    console.log(Nombre,Descripcion,Pregunta,Respuesta1,Respuesta2,Respuesta3);
-    ipcRenderer.send('datos-ruta',[Nombre,Descripcion,Pregunta,Respuesta1,Respuesta2,Respuesta3]);
-    ipcRenderer.send('cerrar-modal');
-    
+    ipcRenderer.send('cerrar-modal',datos);  
 }
 
 

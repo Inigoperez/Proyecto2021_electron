@@ -27,10 +27,13 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
     map.on('click', function(e) {
         cordenadas.push(e.latlng.lat);
         cordenadas.push(e.latlng.lng);
-        ipcRenderer.send('iniciar-modal',cordenadas);
-        ipcMain.on('datos-ruta', (e,datos) =>{
-            console.log(datos);
-        })
+        /*
+        -LLAMADA A LA API
+        -INSERTAMOS EL NUEVO PUNTO Y LE ADJUDICAMOS LAS CORDENADAS
+        -DEVOLVEMOS LA ID DEL PUNTO CREADO ANTERIORMENTE 
+        */
+       ipcRenderer.send('envio-cordenadas',idPunto);
+        ipcRenderer.send('iniciar-modal');
         
         /*var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
