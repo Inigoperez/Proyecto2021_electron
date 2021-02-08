@@ -8,10 +8,16 @@ var contenidoFila = Array();
 let markerList = new Array();
 let cordenadas = new Array();
 let ListaPuntos = [];
+let idPunto;
 let Punto = {
-    "Nombre": '',
+    "Nombre": "",
     "Cordenadas":[],
-    "Calle": ''
+    "Descripcion": "",
+    "Pregunta": "",
+    "Respuesta1": "",
+    "Respuesta2": "",
+    "Respuesta3": "",
+    "Solucion": 0
 };
 ////////////////////////////
 ////////// Mapa ///////////
@@ -31,14 +37,27 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
         -LLAMADA A LA API
         -INSERTAMOS EL NUEVO PUNTO Y LE ADJUDICAMOS LAS CORDENADAS
         -DEVOLVEMOS LA ID DEL PUNTO CREADO ANTERIORMENTE 
+
+        fetch('https://jsonplaceholder.typicode.com/todos', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: "Taylor",
+                surname: "Swift"
+            }),
+            headers: {
+                "Content-type": "application/json"
+            })
+      .then(response => response.json())
+      .then(json => console.log(json))
+
         */
-       ipcRenderer.send('envio-cordenadas',idPunto);
-        ipcRenderer.send('iniciar-modal');
-        
+       ipcRenderer.send('envio-cordenadas',cordenadas);
+       ipcRenderer.send('iniciar-modal');
+
         /*var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
             Punto ={
-                "Nombre":"",
+                "Nombre": 
                 "Cordenadas":[e.latlng.lat , e.latlng.lng],
                 "Calle":""
             }
@@ -79,7 +98,7 @@ function crearTablaPuntos(Punto, Cantidad){
     
     let bodyTablaPuntos = document.getElementById("tablaPuntos").getElementsByTagName('tbody')[0];
     contenidoFila = "<tr>"+
-                        "<td>"+Punto.nombre+"</td>"+
+                        "<td>"+Punto.Nombre+"</td>"+
                         "<td>"+Punto.Cordenadas[0]+"</td>"+
                         "<td>"+Punto.Cordenadas[1]+"</td>"+
                         "<td><button class='btn btn-warning' onclick=\"window.location.href='ModalPunto.html'\">Modificar</button></td>"+

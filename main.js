@@ -82,7 +82,7 @@ app.whenReady().then(() => {
         ListRouteWindow()
       break;
       default:
-        if (BrowserWindow.getAllWindows().length === 0) CreateRoutesWindow();
+        if (BrowserWindow.getAllWindows().length === 0) LoginWindow();
     } 
   })
 
@@ -93,8 +93,8 @@ ipcMain.on('iniciar-modal', (e,datos) =>{
     ModalPunto()
 })
 
-ipcMain.on('envio-cordenadas',(a,idPunto)=>{
-  console.log(idPunto);
+ipcMain.on('envio-cordenadas',(a,cordenadas)=>{
+  console.log(cordenadas);
   IDpunto = idPunto;
 })
 
@@ -103,7 +103,20 @@ ipcMain.on('cerrar-modal', (e,datos)=>{
   /*
     -Llamada a la api para insertar los datos del punto
     -Usar IDpunto para hacer el set datos
-  */
+
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: "Taylor",
+                surname: "Swift"
+            }),
+            headers: {
+                "Content-type": "application/json"
+            })
+      .then(response => response.json())
+      .then(json => console.log(json))
+      
+    */
  ModalCrearRuta.close();
 })
 
