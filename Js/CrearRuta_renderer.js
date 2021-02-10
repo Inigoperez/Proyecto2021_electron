@@ -34,23 +34,36 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
         cordenadas.push(e.latlng.lng);
         Punto.cordenadas = cordenadas;
         ipcRenderer.send('iniciar-modal');
+        var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
+        if (opcion == true) {
+
+            ListaPuntos.push(Punto);
+            
+            crearTablaPuntos(Punto,ListaPuntos.length);
+            addMarker(Cordenadas[0],Cordenadas[1],Nombre);
+        }
+        ipcRenderer.send('cerrar-modal');
     })
 
-    function crearPunto(){
-        console.log("error 2")
+    document.querySelector('#guardar_ruta').addEventListener('click', () => {
+        nombre = document.getElementById('InputNombreRuta').value
+        duracion = document.getElementById('InputDuracion').value
+        ciudad = document.getElementById('InputCiudad').value
+        km = document.getElementById('InputKm').value
+        puntos = document.getElementById('InputPuntos').value
+        descripcion = document.getElementById('InputDescripcion').value
+        
+        AddRuta(nombre,duracion,ciudad,km,puntos,descripcion)
+    })
+    /*function crearPunto(){
+
         Punto.Nombre = document.getElementById("InputNombrePunto").value;
-        console.log("error 3")
         Punto.Descripcion = document.getElementById("InputDescripcion").value;
-        console.log("error 4")
         Punto.Pregunta = document.getElementById("InputPregunta").value;
-        console.log("error 5")
         Punto.Respuesta1 = document.getElementById("InputRespuesta1").value;
-        console.log("error 6")
         Punto.Respuesta2 = document.getElementById("InputRespuesta2").value;
-        console.log("error 7")
         Punto.Respuesta3 = document.getElementById("InputRespuesta3").value;
-        console.log("error 8")
-        Punto.Solucion = document.getElementById("solucion").value
+        Punto.Solucion = document.getElementById("solucion").value;
 
         var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
@@ -61,8 +74,7 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
             addMarker(Punto.Cordenadas[0],Punto.Cordenadas[1],Punto.Nombre);
         }
         ipcRenderer.send('cerrar-modal');
-        print(Punto);
-    }
+    }*/
 
     
     function addMarker(Lat, Lng, Nombre){
@@ -96,8 +108,8 @@ function crearTablaPuntos(Punto){
     let bodyTablaPuntos = document.getElementById("tablaPuntos").getElementsByTagName('tbody')[0];
     contenidoFila = "<tr>"+
                         "<td>"+Punto.Nombre+"</td>"+
-                        "<td>"+Punto.Cordenadas[0]+"</td>"+
-                        "<td>"+Punto.Cordenadas[1]+"</td>"+
+                        "<td>"+Cordenadas[0]+"</td>"+
+                        "<td>"+Cordenadas[1]+"</td>"+
                         "<td><button class='btn btn-warning' onclick=\"window.location.href='ModalPunto.html'\">Modificar</button></td>"+
                         "<td><button class='btn btn-danger' onclick='deleteRow(this)'>Eliminar</button></td>"+
                     "</tr>";
@@ -105,4 +117,26 @@ function crearTablaPuntos(Punto){
     bodyTablaPuntos.insertRow().innerHTML = contenidoFila; 
     bodyTablaPuntos.className = 'table-info text-center';
                         
+}
+
+
+////////////////////////////////////////
+/////////// LLAMADAS API    ////////////
+////////////////////////////////////////
+
+/////   Añadimos una nueva ruta  a la BD  ///////
+
+function AddRuta(nombre,duracion,ciudad,km,puntos,descripcion){
+    const url = 'http://192.168.1.119:8080/rutas/add';
+    var datos = "nombre="+nombre+"&duracion="+duracion+"&ciudad="+ciudad+"&km="+km+"&puntos="+puntos+"&descripcion="+descripcion;
+    console.log(datos);
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            
+        }
+    };
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(datos);
 }

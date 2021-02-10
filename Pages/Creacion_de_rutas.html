@@ -47,7 +47,7 @@
         <div class="row">
           <!-- Formulario de datos RUTA -->
           <div class="col-3 bg-warning">
-              <form>
+              <form action="../Js/CrearRuta_renderer.js" method="GET">
                   <div class="form-group">
                     <label for="InputNombreRuta">Nombre de la ruta: </label>
                     <input type="text" class="form-control" id="InputNombreRuta" placeholder="Nombre de la ruta">
@@ -61,11 +61,19 @@
                     <input type="text" class="form-control" id="InputCiudad" placeholder="ciudad">
                   </div>
                   <div class="form-group">
-                    <label for="formGroupExampleInput2">Another label</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+                    <label for="InputKm">Km:</label>
+                    <input type="number" class="form-control" id="InputKm" placeholder="Km">
+                  </div>
+                  <div class="form-group">
+                    <label for="InputPuntos">Km:</label>
+                    <input type="number" class="form-control" id="InputPuntos" placeholder="Puntos">
+                  </div>
+                  <div class="form-group">
+                    <label for="InputDescripcion">Descripción: </label>
+                    <textarea class="form-control" id="InputDescripcion" placeholder="Descripción"></textarea>
                   </div>
                   <div class="form-group align-items-center text-center">
-                    <input class="btn btn-light" type="button" value="Guardar">
+                    <input class="btn btn-light" type="button" value="Guardar" id="guardar_ruta"/>
                   </div>
               </form>
           </div>

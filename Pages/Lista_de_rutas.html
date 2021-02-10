@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css"/>
     <link rel="stylesheet" href="../node_modules/leaflet-extra-markers/src/assets/css/leaflet.extra-markers.css"/>
   </head>
-  <body>
-    <header id="header" class="header text-center" >
+  <body onload="onload()">
+    <header id="header" class="header text-center">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">Panel Admin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,47 +35,83 @@
           </nav>
         </nav>
     </header>
-    <section>
-      <div class="container sinpadding">
+    <section >
+
+      <!-- Vista de lista de rutas, con boton a editar y eliminar dicha ruta -->
+      <div id="tabla_ruta" class="container sinpadding mt-5">
         <!-- Titulo de la pestaña (Creación de rutas)-->
         <div class="row">
             <div class="col-12 text-center">
                 <h1 id="tituloVentana">Lista de rutas</h1>
             </div>
         </div>
-        <!-- Contenido Formulario/Mapa -->
+        <!-- Tabla de rutas -->
         <div class="row">
-          <!-- Formulario de datos RUTA -->
-          <div class="col-3 bg-warning">
-              <ul>
-                <li>ksfkask</li>
-                <li>ksfkask</li>
-                <li>ksfkask</li>
-                <li>ksfkask</li>                
-              </ul>
-          </div>
-          <!-- Mapa donde seleccionar puntos de ruta -->
-          <div class="col-9 bg-warning p-1 ">
-            <div id="map" class="h-100"></div> 
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <table id="tablaPuntos" class="table table-hover">
+          <div class="col-12 bg-warning">
+            <table id="tablaRutas" class="table table-hover">
               <thead class="text-center">
                 <tr class="table-primary">
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Latitud</th>
-                  <th scope="col">Longitud</th>
-                  <th scope="col">Editar</th>
-                  <th scope="col">Eliminar</th>
+                  <th scope="col">NOMBRE</th>
+                  <th scope="col">DURACION</th>
+                  <th scope="col">CIUDAD</th>
+                  <th scope="col">KM</th>
+                  <th scope="col">DESCRIPCION</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-                
+
               </tbody>
             </table>
           </div>
+          <!-- Mapa donde seleccionar puntos de ruta 
+          <div class="col-9 bg-warning p-1 ">
+            <div id="map" class="h-100"></div> 
+          </div>-->
+        </div>
+      </div>
+      
+      <!-- Vista de edición de ruta seleccionada -->
+      <div id="edit_ruta" class="container sinpadding bg-warning mt-5">
+        <!-- Titulo del div -->
+        <div class="row">
+          <div class="col-12 text-center">
+              <h1 id="EditRuta">Editar ruta:</h1>
+              <h2 id="ID_ruta"></h2>
+          </div>
+        </div>
+        <!-- Formulario -->
+        <div id="Formulario">
+          <form action="../Js/ListaRutas_renderer.js" method="GET">
+            <div class="form-group">
+              <label for="InputNombreRuta">Nombre de la ruta: </label>
+              <input type="text" class="form-control" id="InputNombreRuta" placeholder="Nombre de la ruta">
+            </div>
+            <div class="form-group">
+              <label for="InputDuracion">Duración: </label>
+              <input type="text" class="form-control" id="InputDuracion" placeholder="Duración (en minutos)">
+            </div>
+            <div class="form-group">
+              <label for="InputCiudad">Ciudad/Pueblo: </label>
+              <input type="text" class="form-control" id="InputCiudad" placeholder="ciudad">
+            </div>
+            <div class="form-group">
+              <label for="InputKm">Km:</label>
+              <input type="number" class="form-control" id="InputKm" placeholder="Km">
+            </div>
+            <div class="form-group">
+              <label for="InputPuntos">Puntos:</label>
+              <input type="number" class="form-control" id="InputPuntos" placeholder="Puntos">
+            </div>
+            <div class="form-group">
+              <label for="InputDescripcion">Descripción: </label>
+              <textarea class="form-control" id="InputDescripcion" placeholder="Descripción"></textarea>
+            </div>
+            <div class="form-group align-items-center text-center">
+              <input type="button" class='btn bg-light' id='modificar' value="modificar"/>
+            </div>
+          </form>
         </div>
       </div>
     </section>
