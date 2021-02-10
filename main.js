@@ -1,43 +1,84 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain, webContents, ipcRenderer} = require('electron')
 const path = require('path')
 
-function createWindow () {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
+let IDpunto;
+
+var LoginWindow;
+function LoginWindow (){
+  LoginWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    maximizable:true,
     webPreferences: {
+      enableRemoteModule: true,
       nodeIntegration: true
     }
   })
-
-  // and load the index.html of the app.
-  //mainWindow.loadFile('index.html')
-  mainWindow.loadFile('Pages/Creacion_de_rutas.html')
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  LoginWindow.loadFile('Pages/Login.html')
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
-  createWindow()
-  
-  app.on('activate', function () {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+var CreateRouteWindow ;
+function CreateRoutesWindow() {
+  CreateRouteWindow = new BrowserWindow({
+    width: 900,
+    height: 700,
+    maximizable:true,
+    webPreferences: {
+      enableRemoteModule: true,
+      nodeIntegration: true
+    }
   })
+  CreateRouteWindow.loadFile('Pages/Creacion_de_rutas.html')
+}
+
+var RouteList;
+function ListRouteWindow() {
+  RouteList = new BrowserWindow({
+    width: 800,
+    height: 600,
+    maximizable:true,
+    contextIsolation: false,
+    webPreferences: {
+      enableRemoteModule: true,
+      nodeIntegration: true
+    }
+  });
+  RouteList.loadFile('Pages/Lista_de_rutas.html');
+}
+
+var ModalCrearRuta;
+function ModalPunto(){
+    ModalCrearRuta = new BrowserWindow({
+      title: 'Datos de ruta',
+      modal: true,
+      width: 800,
+      height: 600,
+      alwaysOnTop:true,
+      contextIsolation: false,
+      parent: CreateRouteWindow,
+      webPreferences:{
+        nodeIntegration: true,
+      }
+    });
+    ModalCrearRuta.loadFile('Pages/ModalPunto.html');
+}
+
+///// Iniciamos la aplicación /////
+app.whenReady().then(() => {
+  LoginWindow()  
 })
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+//// Abrimos el modal ////
+ipcMain.on('iniciar-modal', (e,datos) =>{
+    ModalPunto()
+})
+
+ipcMain.on('cerrar-modal', (e,datos)=>{
+ ModalCrearRuta.close();
+})
+
+///// Cerramos la aplicación ///////
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

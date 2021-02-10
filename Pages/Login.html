@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/index_css.css">
+  </head>
+  <body>
+    <section class="container d-flex justify-content-center h-100 align-items-center">
+      <form class="d-flex flex-column bg-secondary" action="../JS/Login_renderer.js" method="GET">
+        <h1 class="text-center">Proyecto Rutas</h1>
+        <div class="form-group mb-5">
+          <label class="text-white" for="email">Correo electronico: </label>
+          <input type="email" class="form-control bg-light" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group my-5">
+          <label class="text-white" for="password">Contraseña: </label>
+          <input type="password" class="form-control bg-light" id="password" placeholder="Password">
+        </div>
+        <div class="form-group p-2"></div>
+          <button type="button" class="btn btn-primary" onclick="login()">Iniciar sesión</button>
+          <button class="btn btn-danger" onclick="location.href='Creacion_de_rutas.html'">Creación de rutas</button>
+        </div>
+      </form>
+    </section>
+    <!-- You can also require other files to run in this process -->
+    <script src="../JS/Login_renderer.js"></script>
+  </body>
+</html>
