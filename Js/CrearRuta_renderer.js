@@ -8,7 +8,6 @@ var contenidoFila = Array();
 let markerList = new Array();
 let cordenadas = new Array();
 let ListaPuntos = [];
-let idPunto;
 let Punto = {
     "Nombre": "",
     "Cordenadas":[],
@@ -33,39 +32,37 @@ var map = L.map('map').setView([43.338318, -1.788809], 15);
     map.on('click', function(e) {
         cordenadas.push(e.latlng.lat);
         cordenadas.push(e.latlng.lng);
-        /*
-        -LLAMADA A LA API
-        -INSERTAMOS EL NUEVO PUNTO Y LE ADJUDICAMOS LAS CORDENADAS
-        -DEVOLVEMOS LA ID DEL PUNTO CREADO ANTERIORMENTE 
+        Punto.cordenadas = cordenadas;
+        ipcRenderer.send('iniciar-modal');
+    })
 
-        fetch('https://jsonplaceholder.typicode.com/todos', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: "Taylor",
-                surname: "Swift"
-            }),
-            headers: {
-                "Content-type": "application/json"
-            })
-      .then(response => response.json())
-      .then(json => console.log(json))
+    function crearPunto(){
+        console.log("error 2")
+        Punto.Nombre = document.getElementById("InputNombrePunto").value;
+        console.log("error 3")
+        Punto.Descripcion = document.getElementById("InputDescripcion").value;
+        console.log("error 4")
+        Punto.Pregunta = document.getElementById("InputPregunta").value;
+        console.log("error 5")
+        Punto.Respuesta1 = document.getElementById("InputRespuesta1").value;
+        console.log("error 6")
+        Punto.Respuesta2 = document.getElementById("InputRespuesta2").value;
+        console.log("error 7")
+        Punto.Respuesta3 = document.getElementById("InputRespuesta3").value;
+        console.log("error 8")
+        Punto.Solucion = document.getElementById("solucion").value
 
-        */
-       ipcRenderer.send('envio-cordenadas',cordenadas);
-       ipcRenderer.send('iniciar-modal');
-
-        /*var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
+        var opcion = confirm("¿Quieres guardar este punto? (Lat/Long: "+e.latlng.lat+" / "+e.latlng.lng+"", "Crear localización");
         if (opcion == true) {
-            Punto ={
-                "Nombre": 
-                "Cordenadas":[e.latlng.lat , e.latlng.lng],
-                "Calle":""
-            }
+
             ListaPuntos.push(Punto);
+            
             crearTablaPuntos(Punto,ListaPuntos.length);
             addMarker(Punto.Cordenadas[0],Punto.Cordenadas[1],Punto.Nombre);
-        }*/
-    });
+        }
+        ipcRenderer.send('cerrar-modal');
+        print(Punto);
+    }
 
     
     function addMarker(Lat, Lng, Nombre){
@@ -94,7 +91,7 @@ function deleteRow(r) {
 }
 
 
-function crearTablaPuntos(Punto, Cantidad){
+function crearTablaPuntos(Punto){
     
     let bodyTablaPuntos = document.getElementById("tablaPuntos").getElementsByTagName('tbody')[0];
     contenidoFila = "<tr>"+
@@ -108,11 +105,4 @@ function crearTablaPuntos(Punto, Cantidad){
     bodyTablaPuntos.insertRow().innerHTML = contenidoFila; 
     bodyTablaPuntos.className = 'table-info text-center';
                         
-}
-
-//////////////////////////////////////////
-////////////////// Menú //////////////////
-
-function ViewListaRutas(view){
-    ipcRenderer.send('Vista',view);
 }

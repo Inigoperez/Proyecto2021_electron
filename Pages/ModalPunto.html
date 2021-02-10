@@ -57,15 +57,29 @@
                 </div>
               </div>
               <div class="row">
+                <div class="form-group w-100">
+                  <div class="col-2">
+                    <label for="InputRespuesta3">Solucion:</label>
+                  </div>
+                  <div class="col-10">
+                    <select id="solucion">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-12">
                   <div class="form-group align-items-center text-center">
-                    <button id="guardarPunto" class="btn btn-light">Guardar</button>
+                    <button id="guardarPunto" class="btn btn-light" onclick="crearPunto()">Guardar</button>
                   </div>
                 </div>
               </div>
             </form>
           </div>
       </section>
-      <script src="../Js/ModalPunto_renderer.js"></script>
+      
     </body>
 </html>

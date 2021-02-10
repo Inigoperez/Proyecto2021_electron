@@ -5,7 +5,7 @@ const path = require('path')
 let IDpunto;
 
 var LoginWindow;
-function LoginWindow () {
+function LoginWindow (){
   LoginWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -19,7 +19,7 @@ function LoginWindow () {
 }
 
 var CreateRouteWindow ;
-function CreateRoutesWindow () {
+function CreateRoutesWindow() {
   CreateRouteWindow = new BrowserWindow({
     width: 900,
     height: 700,
@@ -33,7 +33,7 @@ function CreateRoutesWindow () {
 }
 
 var RouteList;
-function ListRouteWindow () {
+function ListRouteWindow() {
   RouteList = new BrowserWindow({
     width: 800,
     height: 600,
@@ -66,26 +66,7 @@ function ModalPunto(){
 
 ///// Iniciamos la aplicación /////
 app.whenReady().then(() => {
-  CreateRoutesWindow()
-  
-  app.on('activate', function () {
-    var Option;
-    ipcMain.on('Vista', (e,datos) =>{
-      Option = datos;
-    })
-
-    switch(Option){
-      case 'CrearRuta':
-        CreateRoutesWindow()
-      break;
-      case 'ListaRuta':
-        ListRouteWindow()
-      break;
-      default:
-        if (BrowserWindow.getAllWindows().length === 0) LoginWindow();
-    } 
-  })
-
+  LoginWindow()  
 })
 
 //// Abrimos el modal ////
@@ -93,30 +74,7 @@ ipcMain.on('iniciar-modal', (e,datos) =>{
     ModalPunto()
 })
 
-ipcMain.on('envio-cordenadas',(a,cordenadas)=>{
-  console.log(cordenadas);
-  IDpunto = idPunto;
-})
-
 ipcMain.on('cerrar-modal', (e,datos)=>{
-  console.log(datos);
-  /*
-    -Llamada a la api para insertar los datos del punto
-    -Usar IDpunto para hacer el set datos
-
-    fetch('https://jsonplaceholder.typicode.com/todos', {
-            method: 'POST',
-            body: JSON.stringify({
-                name: "Taylor",
-                surname: "Swift"
-            }),
-            headers: {
-                "Content-type": "application/json"
-            })
-      .then(response => response.json())
-      .then(json => console.log(json))
-      
-    */
  ModalCrearRuta.close();
 })
 
