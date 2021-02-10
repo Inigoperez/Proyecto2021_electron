@@ -13,7 +13,7 @@ function login(){
       }
     };
     xhttp.open("GET", url, true);
-    xhttp.send();
+    xhttp.send(nul);
     /*fetch(url)
       .then(response => response.json())
       .then(json => console.log(json));*/
