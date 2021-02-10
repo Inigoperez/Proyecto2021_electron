@@ -1,5 +1,6 @@
 var div_tablaRuta = document.getElementById('tabla_ruta');
 var div_editRuta = document.getElementById('edit_ruta');
+var id_global;
 
 /////   AL cargar la página visibiliza el div donde se muestra la lista de rutas, carga de la BD las rutas existentes y crea la tabla utilizando la funcion SacarRutas()  /////
 
@@ -27,6 +28,7 @@ function rellenarForm(Ruta){
     document.getElementById('InputDescripcion').value = Ruta.descripcion;
     document.getElementById("InputPuntos").value = Ruta.puntos;
     document.getElementById("InputKm").value = Ruta.km;
+    id_global=Ruta.id;
 
  }
 
@@ -63,8 +65,7 @@ document.querySelector('#modificar').addEventListener('click', () => {
     var descripcion = document.getElementById('InputDescripcion').value;
     var puntos = document.getElementById("InputPuntos").value;
     var km = document.getElementById("InputKm").value;
-    var id = document.getElementById('ID_ruta').value;
-    ModificarRuta(id,nombre,duracion,ciudad,km,puntos,descripcion);
+    ModificarRuta(id_global,nombre,duracion,ciudad,km,puntos,descripcion);
 })
 
 ////////////////////////////////////////////////////////////////
@@ -130,16 +131,16 @@ function EliminarRuta(id){
 
 /////   Modificamos los campos de una ruta en concreto mediante ID  ///////
 
-function ModificarRuta(id,nombre,duracion,km,ciudad,puntos,descripcion){
+function ModificarRuta(id,nombre,duracion,ciudad,km,puntos,descripcion){
     const url = 'http://192.168.1.119:8080/rutas/updateRuta';
-    const datos = "id="+id+"&nombre="+nombre+"&duracion="+duracion+'&ciudad='+ciudad+'&descripcion='+descripcion+'&puntos='+puntos+"&km="+km;
+    const datos = "id="+id+"&nombre="+nombre+"&duracion="+duracion+"&ciudad="+ciudad+"&descripcion="+descripcion+"&puntos="+puntos+"&km="+km;
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             window.location.href = "../Pages/Lista_de_rutas.html";
-        }
+        };
     };
-    xhttp.open("PUT", url, true);
+    xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(datos);
 }

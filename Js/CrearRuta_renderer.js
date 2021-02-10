@@ -128,7 +128,7 @@ function crearTablaPuntos(Punto){
 
 function AddRuta(nombre,duracion,ciudad,km,puntos,descripcion){
     const url = 'http://192.168.1.119:8080/rutas/add';
-    var datos = "nombre="+nombre+"&duracion="+duracion+"&ciudad="+ciudad+"&km="+km+"&puntos="+puntos+"&descripcion="+descripcion;
+    var datos = "nombre="+nombre+"&duracion="+duracion+"&ciudad="+ciudad+"&descripcion="+descripcion+"&puntos="+puntos+"&km="+km;
     console.log(datos);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
